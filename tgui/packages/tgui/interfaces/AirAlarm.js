@@ -1,4 +1,5 @@
 import { toFixed } from 'common/math';
+import { Fragment } from 'inferno';
 import { decodeHtmlEntities } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, LabeledList, NumberInput, Section } from '../components';

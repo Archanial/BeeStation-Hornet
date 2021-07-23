@@ -635,6 +635,14 @@
 	category = list ("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/component_printer
+	name = "Machine Design (Component Printer)"
+	desc = "The circuit board for a component printer"
+	id = "component_printer"
+	build_path = /obj/item/circuitboard/machine/component_printer
+	category = list("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/vendatray
 	name = "Vend-a-Tray"
 	desc = "The circuit board for a Vend-a-Tray."

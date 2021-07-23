@@ -338,7 +338,7 @@ SUBSYSTEM_DEF(explosions)
 			for(var/I in T)
 				var/atom/A = I
 				if (length(A.contents) && !(A.flags_1 & PREVENT_CONTENTS_EXPLOSION_1)) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
-					items += A.GetAllContents()
+					items += A.GetAllContents(ignore_flag_1 = PREVENT_CONTENTS_EXPLOSION_1)
 			for(var/thing in items)
 				var/atom/movable/movable_thing = thing
 				if(QDELETED(movable_thing))
@@ -573,3 +573,5 @@ SUBSYSTEM_DEF(explosions)
 		cost_throwturf = MC_AVERAGE(cost_throwturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 	currentpart = SSEXPLOSIONS_TURFS
+
+#undef SSAIR_REBUILD_PIPENETS

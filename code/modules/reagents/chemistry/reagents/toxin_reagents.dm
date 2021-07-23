@@ -547,7 +547,7 @@
 			if(3)
 				if(!C.undergoing_cardiac_arrest() && C.can_heartattack())
 					C.set_heartattack(TRUE)
-					if(C.is_conscious())
+					if(C.stat == CONSCIOUS)
 						C.visible_message("<span class='userdanger'>[C] clutches at [C.p_their()] chest as if [C.p_their()] heart stopped!</span>")
 				else
 					C.losebreath += 10
@@ -735,7 +735,7 @@
 	return ..()
 
 /datum/reagent/toxin/rotatium/on_mob_end_metabolize(mob/living/M)
-	if(M && M.hud_used)
+	if(M?.hud_used)
 		var/atom/movable/plane_master_controller/pm_controller = M.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
 		for(var/key in pm_controller.controlled_planes)
 			animate(pm_controller.controlled_planes[key], transform = matrix(), time = 5, easing = QUAD_EASING)

@@ -43,6 +43,9 @@
 	else if(x<0)
 		.+=360
 
+//Better performant than an artisanal proc and more reliable than Turn(). From TGMC.
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
+
 //Returns location. Returns null if no location was found.
 /proc/get_teleport_loc(turf/location,mob/target,distance = 1, density = FALSE, closed = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*
@@ -394,6 +397,17 @@ Turf and target are separate in case you want to teleport some distance from a t
 			break
 	return loc
 
+//Returns a list of all locations (except the area) the movable is within.
+/proc/get_nested_locs(atom/movable/AM, include_turf = FALSE)
+	. = list()
+	var/atom/location = AM.loc
+	var/turf/turf = get_turf(AM)
+	while(location && location != turf)
+		. += location
+		location = location.loc
+	if(location && include_turf) //At this point, only the turf is left, provided it exists.
+		. += location
+
 /// Returns the turf located at the map edge in the specified direction relative to A. Used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
 	var/turf/target = locate(A.x, A.y, A.z)
@@ -441,7 +455,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	return locate(x,y,A.z)
 
 /// Gets all contents of contents and returns them all in a list.
-/atom/proc/GetAllContents(var/T)
+/atom/proc/GetAllContents(var/T, ignore_flag_1)
 	var/list/processing_list = list(src)
 	var/list/assembled = list()
 	if(T)
@@ -457,7 +471,8 @@ Turf and target are separate in case you want to teleport some distance from a t
 		while(processing_list.len)
 			var/atom/A = processing_list[1]
 			processing_list.Cut(1, 2)
-			processing_list += A.contents
+			if(!(A.flags_1 & ignore_flag_1))
+				processing_list += A.contents
 			assembled += A
 	return assembled
 

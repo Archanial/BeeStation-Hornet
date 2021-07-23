@@ -707,7 +707,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		homerun_ready = 0
 		return
 	else if(!target.anchored)
-		target.throw_at(throw_target, rand(1,2), 7, user)
+		target.throw_at(throw_target, rand(1,2), 7, user, force = MOVE_FORCE_WEAK)
 	user.changeNext_move(CLICK_CD_MELEE * click_delay)
 	return
 
@@ -936,3 +936,4 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/vibro_weapon/update_icon()
 	icon_state = "hfrequency0"
+	..()

@@ -19,14 +19,8 @@
 
 /// Signifies that this proc is used to handle signals.
 /// Every proc you pass to RegisterSignal must have this.
-/// Mostly unused in Bee since it is a recent tg PR:
-/// https://github.com/tgstation/tgstation/pull/52761
-/// it doesn't matter *that* much so I don't care now *shrug
 #define SIGNAL_HANDLER SHOULD_NOT_SLEEP(TRUE)
 
-/// Signifies that this proc is used to handle signals, but also sleeps.
-/// Do not use this for new work.
-#define SIGNAL_HANDLER_DOES_SLEEP
 
 //////////////////////////////////////////////////////////////////
 
@@ -48,7 +42,7 @@
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //! from base of atom/attackby(): (/obj/item, /mob/living, params)
 	#define COMPONENT_NO_AFTERATTACK 1							//! Return this in response if you don't want afterattack to be called
 #define COMSIG_ATOM_HULK_ATTACK "hulk_attack"					//! from base of atom/attack_hulk(): (/mob/living/carbon/human)
-#define COMSIG_PARENT_EXAMINE "atom_examine"                    //! from base of atom/examine(): (/mob)
+#define COMSIG_PARENT_EXAMINE "atom_examine"                    //! from base of atom/examine(): (/mob, list/examine_text)
 #define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"		//! from base of atom/get_examine_name(): (/mob, list/overrides)
 	//Positions for overrides list
 	#define EXAMINE_POSITION_ARTICLE 1
@@ -93,10 +87,16 @@
   #define COMPONENT_RAD_WAVE_HANDLED 1
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//! from internal loop in atom/movable/proc/CanReach(): (list/next)
 	#define COMPONENT_BLOCK_REACH 1
-#define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"		//! from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
 #define COMSIG_ATOM_INTERCEPT_TELEPORT "intercept_teleport"		//! called when teleporting into a protected turf: (channel, turf/origin)
 	#define COMPONENT_BLOCK_TELEPORT 1
 /////////////////
+/* Attack signals. They should share the returned flags, to standardize the attack chain. */
+/// tool_act -> pre_attack -> target.attackby (item.attack) -> afterattack
+	///Ends the attack chain. If sent early might cause posterior attacks not to happen.
+	#define COMPONENT_CANCEL_ATTACK_CHAIN (1<<0)
+	///Skips the specific attack step, continuing for the next one to happen.
+	#define COMPONENT_SKIP_ATTACK (1<<1)
+
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//! from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 #define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"				//! from base of atom/attack_hand(): (mob/user)
 #define COMSIG_ATOM_ATTACK_PAW "atom_attack_paw"				//! from base of atom/attack_paw(): (mob/user)
@@ -107,6 +107,10 @@
 #define COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE "atom_init_success"
 ///from base of atom/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 #define COMSIG_ATOM_HITBY "atom_hitby"
+
+///from base of atom/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+#define COMSIG_ATOM_HITBY "atom_hitby"
+
 
 /////////////////
 
@@ -164,6 +168,7 @@
 
 // /mob signals
 #define COMSIG_MOB_LOGIN "mob_login"
+#define COMSIG_MOB_LOGOUT "mob_logout"							///from base of /mob/Logout(): ()
 #define COMSIG_MOB_DEATH "mob_death"							//! from base of mob/death(): (gibbed)
 #define COMSIG_MOB_STATCHANGE "mob_statchange"					//from base of mob/set_stat(): (new_stat)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//! from base of mob/clickon(): (atom/A, params)
@@ -183,7 +188,7 @@
 #define COMSIG_MOB_THROW "mob_throw"							//! from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//! from base of /mob/update_sight(): ()
 #define COMSIG_MOB_EXAMINATE "mob_examinate"					//from base of /mob/verb/examinate(): (atom/target)
-#define COMSIG_MOB_SAY "mob_say" // from /mob/living/say(): (proc args list)
+#define COMSIG_MOB_SAY "mob_say" // from /mob/living/say(): ()
 	#define COMPONENT_UPPERCASE_SPEECH 1
 	// used to access COMSIG_MOB_SAY argslist
 	#define SPEECH_MESSAGE 1
@@ -197,6 +202,9 @@
 #define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"        //from base of mob/swap_hand()
   #define COMPONENT_BLOCK_SWAP 1
 
+///from base of /obj/item/mmi/set_brainmob(): (mob/living/brain/new_brainmob)
+#define COMSIG_MMI_SET_BRAINMOB "mmi_set_brainmob"
+
 // /mob/living signals
 #define COMSIG_LIVING_REVIVE "living_revive"					//! from base of mob/living/revive() (/mob/living, full_heal, admin_revive)
 #define COMSIG_LIVING_RESIST "living_resist"					//! from base of mob/living/resist() (/mob/living)
@@ -207,6 +215,8 @@
 #define COMSIG_PROCESS_BORGCHARGER_OCCUPANT "living_charge"		//! sent from borg recharge stations: (amount, repairs)
 #define COMSIG_BORG_SAFE_DECONSTRUCT "borg_safe_decon"			//sent from borg mobs to itself, for tools to catch an upcoming destroy() due to safe decon (rather than detonation)
 #define COMSIG_MOB_CLIENT_LOGIN "comsig_mob_client_login"
+#define COMSIG_LIVING_TRY_SYRINGE "living_try_syringe"			///From post-can inject check of syringe after attack (mob/user)
+#define COMSIG_LIVING_START_PULL "living_start_pull"			///called on /living when someone starts pulling (atom/movable/pulled, state, force)
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 #define COMSIG_LIVING_STATUS_STUN "living_stun"					//! from base of mob/living/Stun() (amount, update, ignore)
@@ -236,6 +246,7 @@
 #define COMSIG_CARBON_GAIN_TRAUMA "carbon_gain_trauma"
 ///Called when a carbon loses a brain trauma (source = carbon, trauma = what trauma was removed)
 #define COMSIG_CARBON_LOSE_TRAUMA "carbon_lose_trauma"
+#define COMSIG_CARBON_CUFF_ATTEMPTED "carbon_attempt_cuff"			///Called when someone attempts to cuff a carbon
 
 // /mob/living/simple_animal/hostile signals
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
@@ -419,17 +430,3 @@
 
 //Heretics stuff
 #define COMSIG_HUMAN_VOID_MASK_ACT "void_mask_act"
-
-///from base of /obj/item/bodypart/proc/attach_limb(): (new_limb, special) allows you to fail limb attachment
-#define COMSIG_CARBON_ATTACH_LIMB "carbon_attach_limb"
-	#define COMPONENT_NO_ATTACH (1<<0)
-#define COMSIG_CARBON_REMOVE_LIMB "carbon_remove_limb" //from base of /obj/item/bodypart/proc/drop_limb(special, dismembered)
-
-///called from /obj/effect/proc_holder/spell/perform (src)
-#define COMSIG_MOB_CAST_SPELL "mob_cast_spell"
-
-
-// /obj/item/gun signals
-
-///called in /obj/item/gun/process_fire (src, target, params, zone_override)
-#define COMSIG_MOB_FIRED_GUN "mob_fired_gun"

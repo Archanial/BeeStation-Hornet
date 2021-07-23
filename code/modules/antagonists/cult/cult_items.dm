@@ -118,6 +118,11 @@
 	AddComponent(/datum/component/butchering, 50, 80)
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
 
+/obj/item/cult_bastard/Destroy()
+	QDEL_NULL(jaunt)
+	QDEL_NULL(linked_action)
+	return ..()
+
 /obj/item/cult_bastard/examine(mob/user)
 	. = ..()
 	if(contents.len)
@@ -202,7 +207,7 @@
 	phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
 
 /datum/action/innate/dash/cult/IsAvailable()
-	if(iscultist(holder) && current_charges)
+	if(iscultist(owner) && current_charges)
 		return TRUE
 	else
 		return FALSE
@@ -650,8 +655,9 @@
 	AddComponent(/datum/component/butchering, 100, 90)
 	AddComponent(/datum/component/two_handed, force_unwielded=17, force_wielded=24, icon_wielded="bloodspear1")
 
-/obj/item/cult_spear/update_icon_state()
+/obj/item/cult_spear/update_icon()
 	icon_state = "bloodspear0"
+	..()
 
 /obj/item/cult_spear/Destroy()
 	if(spear_act)
