@@ -884,15 +884,36 @@
 			O.held_index = r_arm_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
 
-/mob/living/carbon/do_after_coefficent()
-	. = ..()
-	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
-	if(mood)
-		switch(mood.sanity) //Alters do_after delay based on how sane you are
-			if(-INFINITY to SANITY_DISTURBED)
-				. *= 1.25
-			if(SANITY_NEUTRAL to INFINITY)
-				. *= 0.90
+
+///Proc to hook behavior on bodypart additions.
+/mob/living/carbon/proc/add_bodypart(obj/item/bodypart/new_bodypart)
+	bodyparts += new_bodypart
+
+	switch(new_bodypart.body_part)
+		if(LEG_LEFT, LEG_RIGHT)
+			set_num_legs(num_legs + 1)
+			if(!new_bodypart.bodypart_disabled)
+				set_usable_legs(usable_legs + 1)
+		if(ARM_LEFT, ARM_RIGHT)
+			set_num_hands(num_hands + 1)
+			if(!new_bodypart.bodypart_disabled)
+				set_usable_hands(usable_hands + 1)
+
+
+///Proc to hook behavior on bodypart removals.
+/mob/living/carbon/proc/remove_bodypart(obj/item/bodypart/old_bodypart)
+	bodyparts -= old_bodypart
+
+	switch(old_bodypart.body_part)
+		if(LEG_LEFT, LEG_RIGHT)
+			set_num_legs(num_legs - 1)
+			if(!old_bodypart.bodypart_disabled)
+				set_usable_legs(usable_legs - 1)
+		if(ARM_LEFT, ARM_RIGHT)
+			set_num_hands(num_hands - 1)
+			if(!old_bodypart.bodypart_disabled)
+				set_usable_hands(usable_hands - 1)
+
 
 /mob/living/carbon/proc/create_internal_organs()
 	for(var/X in internal_organs)
