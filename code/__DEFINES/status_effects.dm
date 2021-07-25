@@ -129,3 +129,13 @@
 #define STASIS_ASCENSION_EFFECT "heretic_ascension"
 
 #define IS_IN_STASIS(mob) (mob.has_status_effect(STATUS_EFFECT_STASIS))
+
+///Raises click cooldowns for everything you do
+#define STATUS_EFFECT_WOOZY /datum/status_effect/woozy
+
+///Makes you bleed harder
+#define STATUS_EFFECT_HIGHBLOODPRESSURE /datum/status_effect/high_blood_pressure
+
+
+/// makes you seize up
+#define STATUS_EFFECT_SEIZURE /datum/status_effect/seizure

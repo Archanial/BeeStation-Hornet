@@ -807,6 +807,9 @@
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
 	if(reagents)
 		reagents.clear_reagents()
+	if(mind)
+		for(var/addiction_type in subtypesof(/datum/addiction))
+			mind.remove_addiction_points(addiction_type, MAX_ADDICTION_POINTS) //Remove the addiction!
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
 		organ.setOrganDamage(0)
@@ -825,8 +828,6 @@
 		for(var/obj/item/restraints/R in contents) //actually remove cuffs from inventory
 			qdel(R)
 		update_handcuffed()
-		if(reagents)
-			reagents.addiction_list = list()
 	cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	..()
 	// heal ears after healing traits, since ears check TRAIT_DEAF trait
@@ -883,37 +884,6 @@
 			r_arm_index_next += 2
 			O.held_index = r_arm_index_next //2, 4, 6, 8...
 			hand_bodyparts += O
-
-
-///Proc to hook behavior on bodypart additions.
-/mob/living/carbon/proc/add_bodypart(obj/item/bodypart/new_bodypart)
-	bodyparts += new_bodypart
-
-	switch(new_bodypart.body_part)
-		if(LEG_LEFT, LEG_RIGHT)
-			set_num_legs(num_legs + 1)
-			if(!new_bodypart.bodypart_disabled)
-				set_usable_legs(usable_legs + 1)
-		if(ARM_LEFT, ARM_RIGHT)
-			set_num_hands(num_hands + 1)
-			if(!new_bodypart.bodypart_disabled)
-				set_usable_hands(usable_hands + 1)
-
-
-///Proc to hook behavior on bodypart removals.
-/mob/living/carbon/proc/remove_bodypart(obj/item/bodypart/old_bodypart)
-	bodyparts -= old_bodypart
-
-	switch(old_bodypart.body_part)
-		if(LEG_LEFT, LEG_RIGHT)
-			set_num_legs(num_legs - 1)
-			if(!old_bodypart.bodypart_disabled)
-				set_usable_legs(usable_legs - 1)
-		if(ARM_LEFT, ARM_RIGHT)
-			set_num_hands(num_hands - 1)
-			if(!old_bodypart.bodypart_disabled)
-				set_usable_hands(usable_hands - 1)
-
 
 /mob/living/carbon/proc/create_internal_organs()
 	for(var/X in internal_organs)

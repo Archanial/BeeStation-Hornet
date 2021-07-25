@@ -500,7 +500,8 @@
 	if (!reagent_type)
 		reagent_type = pick(drug_list)
 	reagent_instance = new reagent_type()
-	H.reagents.addiction_list.Add(reagent_instance)
+	for(var/addiction in reagent_instance.addiction_types)
+		H.mind.add_addiction_points(addiction, 1000)
 	var/current_turf = get_turf(quirk_holder)
 	if (!drug_container_type)
 		drug_container_type = /obj/item/storage/pill_bottle
@@ -534,16 +535,20 @@
 	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] of [initial(reagent_type.name)] [where_drug]. Better hope you don't run out...</span>")
 
 /datum/quirk/junkie/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
+	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(world.time > next_process)
 		next_process = world.time + process_interval
-		if(!H.reagents.addiction_list.Find(reagent_instance))
-			if(QDELETED(reagent_instance))
+		var/deleted = QDELETED(reagent_instance)
+		var/missing_addiction = FALSE
+		for(var/addiction_type in reagent_instance.addiction_types)
+			if(!LAZYACCESS(human_holder.mind.active_addictions, addiction_type))
+				missing_addiction = TRUE
+		if(deleted || missing_addiction)
+			if(deleted)
 				reagent_instance = new reagent_type()
-			else
-				reagent_instance.addiction_stage = 0
-			H.reagents.addiction_list += reagent_instance
-			to_chat(quirk_holder, "<span class='danger'>You thought you kicked it, but you suddenly feel like you need [reagent_instance.name] again...</span>")
+			to_chat(quirk_holder, "<span class='danger'>You thought you kicked it, but you feel like you're falling back onto bad habits..</span>")
+			for(var/addiction in reagent_instance.addiction_types)
+				human_holder.mind.add_addiction_points(addiction, 1000) ///Max that shit out
 
 /datum/quirk/junkie/smoker
 	name = "Smoker"
