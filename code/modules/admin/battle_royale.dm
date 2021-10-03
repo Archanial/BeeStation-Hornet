@@ -263,6 +263,8 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			C.add_verb(BATTLE_ROYALE_AVERBS)
 	toggle_ooc(FALSE)
 	to_chat(world, "<span class='ratvar'><font size=24>Battle Royale will begin soon...</span></span>")
+	to_chat(world, "<span class='greenannounce'><i>If you are on the main menu, observe immediately to sign up. (You will be prompted in 30 seconds.)</i></span>")
+	var/list/participants = pollGhostCandidates("Would you like to partake in BATTLE ROYALE?")
 	//Stop new player joining
 	GLOB.enter_allowed = FALSE
 	world.update_status()
@@ -271,6 +273,8 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		SSticker.start_immediately = FALSE
 		UNTIL(SSticker.current_state >= GAME_STATE_PREGAME)
 		to_chat(world, "<span class=boldannounce>Battle Royale: Done!</span>")
+		to_chat(world, "<span class='greenannounce'>Make sure to hit yes to the sign up message given to all observing players.</span>")
+
 	//Delay pre-game if we are in it.
 	if(SSticker.current_state == GAME_STATE_PREGAME)
 		//Force people to be not ready and start the game
@@ -281,24 +285,16 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		to_chat(world, "<span class='boldannounce'>Battle Royale: Force-starting game.</span>")
 		SSticker.start_immediately = TRUE
 	SEND_SOUND(world, sound('sound/misc/server-ready.ogg'))
-	sleep(50)
 	//Clear client mobs
 	to_chat(world, "<span class='boldannounce'>Battle Royale: Clearing world mobs.</span>")
 	for(var/mob/M as() in GLOB.player_list)
 		if(isliving(M))
 			qdel(M)
 		CHECK_TICK
-	sleep(50)
-	to_chat(world, "<span class='greenannounce'>Battle Royale: STARTING IN 30 SECONDS.</span>")
-	to_chat(world, "<span class='greenannounce'><i>If you are on the main menu, observe immediately to sign up. (You will be prompted in 30 seconds.)</i></span>")
-	toggle_ooc(TRUE)
-	sleep(300)
-	toggle_ooc(FALSE)
 	to_chat(world, "<span class='boldannounce'>Battle Royale: STARTING IN 5 SECONDS.</span>")
-	to_chat(world, "<span class='greenannounce'>Make sure to hit yes to the sign up message given to all observing players.</span>")
 	sleep(50)
 	to_chat(world, "<span class='boldannounce'>Battle Royale: Starting game.</span>")
-	titanfall()
+	titanfall(participants)
 	death_wall = list()
 	var/z_level = SSmapping.station_start
 	var/turf/center = SSmapping.get_station_center()
@@ -314,8 +310,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		CHECK_TICK
 	START_PROCESSING(SSprocessing, src)
 
-/datum/battle_royale_controller/proc/titanfall()
-	var/list/participants = pollGhostCandidates("Would you like to partake in BATTLE ROYALE?")
+/datum/battle_royale_controller/proc/titanfall(list/participants)
 	var/turf/spawn_turf = get_safe_random_station_turf()
 	var/obj/structure/closet/supplypod/centcompod/pod = new()
 	pod.setStyle()
