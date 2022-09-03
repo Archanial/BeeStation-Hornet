@@ -224,7 +224,7 @@
 	)
 
 	//better spam mail names instead of being "IMPORTANT MAIL", courtesy of Monkestation
-	color = "#[pick(random_short_color())]"
+	color = "#[pick(random_color())]"
 	switch(rand(1,10))
 
 		if(1,2)

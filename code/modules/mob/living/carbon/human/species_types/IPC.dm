@@ -38,12 +38,14 @@
 	species_language_holder = /datum/language_holder/synthetic
 	special_step_sounds = list('sound/effects/servostep.ogg')
 
-	species_chest = /obj/item/bodypart/chest/ipc
-	species_head = /obj/item/bodypart/head/ipc
-	species_l_arm = /obj/item/bodypart/l_arm/ipc
-	species_r_arm = /obj/item/bodypart/r_arm/ipc
-	species_l_leg = /obj/item/bodypart/l_leg/ipc
-	species_r_leg = /obj/item/bodypart/r_leg/ipc
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/ipc,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/ipc,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/ipc,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/ipc,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/ipc,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/ipc,
+	)
 
 	var/saved_screen //for saving the screen when they die
 	var/datum/action/innate/change_screen/change_screen

@@ -570,3 +570,64 @@ Takes a string and a datum. The string is well, obviously the string being check
 			return null
 		r += ascii2text(c)
 	return r
+
+/proc/body_zone2cover_flags(def_zone)
+	switch(def_zone)
+		if(BODY_ZONE_CHEST)
+			return list(CHEST, GROIN)
+		if(BODY_ZONE_HEAD)
+			return list(HEAD)
+		if(BODY_ZONE_L_ARM)
+			return list(ARM_LEFT, HAND_LEFT)
+		if(BODY_ZONE_R_ARM)
+			return list(ARM_RIGHT, HAND_RIGHT)
+		if(BODY_ZONE_L_LEG)
+			return list(LEG_LEFT, FOOT_LEFT)
+		if(BODY_ZONE_R_LEG)
+			return list(LEG_RIGHT, FOOT_RIGHT)
+
+/proc/cover_flags2body_zones(bpc)
+	var/list/covered_parts = list()
+
+	if(!bpc)
+		return 0
+
+	if(bpc == FULL_BODY)
+		covered_parts |= list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+
+	else
+		if(bpc & HEAD)
+			covered_parts |= list(BODY_ZONE_HEAD)
+		if(bpc & CHEST)
+			covered_parts |= list(BODY_ZONE_CHEST)
+		if(bpc & GROIN)
+			covered_parts |= list(BODY_ZONE_CHEST)
+		if(bpc & ARMS)
+			covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM)
+		else
+			if(bpc & ARM_LEFT)
+				covered_parts |= list(BODY_ZONE_L_ARM)
+			if(bpc & ARM_RIGHT)
+				covered_parts |= list(BODY_ZONE_R_ARM)
+		if(bpc & HANDS)
+			covered_parts |= list(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM)
+		else
+			if(bpc & HAND_LEFT)
+				covered_parts |= list(BODY_ZONE_L_ARM)
+			if(bpc & HAND_RIGHT)
+				covered_parts |= list(BODY_ZONE_R_ARM)
+		if(bpc & LEGS)
+			covered_parts |= list(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
+		else
+			if(bpc & LEG_LEFT)
+				covered_parts |= list(BODY_ZONE_L_LEG)
+			if(bpc & LEG_RIGHT)
+				covered_parts |= list(BODY_ZONE_R_LEG)
+		if(bpc & FEET)
+			covered_parts |= list(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG)
+		else
+			if(bpc & FOOT_LEFT)
+				covered_parts |= list(BODY_ZONE_L_LEG)
+			if(bpc & FOOT_RIGHT)
+				covered_parts |= list(BODY_ZONE_R_LEG)
+	return covered_parts

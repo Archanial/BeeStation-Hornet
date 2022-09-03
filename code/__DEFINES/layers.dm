@@ -100,17 +100,10 @@
 #define CHAT_LAYER 12.0001 // Do not insert layers between these two values
 #define CHAT_LAYER_MAX 12.9999
 
-#define EMISSIVE_BLOCKER_PLANE 12
-#define EMISSIVE_BLOCKER_LAYER 12
-#define EMISSIVE_BLOCKER_RENDER_TARGET "*EMISSIVE_BLOCKER_PLANE"
 
 #define EMISSIVE_PLANE 13
 #define EMISSIVE_LAYER 13
 #define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
-
-#define EMISSIVE_UNBLOCKABLE_PLANE 14
-#define EMISSIVE_UNBLOCKABLE_LAYER 14
-#define EMISSIVE_UNBLOCKABLE_RENDER_TARGET "*EMISSIVE_UNBLOCKABLE_PLANE"
 
 #define DATA_HUD_PLANE 15
 
@@ -165,3 +158,6 @@
 
 ///Plane master controller keys
 #define PLANE_MASTERS_GAME "plane_masters_game"
+
+/// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
+#define EMISSIVE_LAYER_UNBLOCKABLE 9999

@@ -3,7 +3,7 @@
 	name = "\improper Lizardperson"
 	id = SPECIES_LIZARD
 	bodyflag = FLAG_LIZARD
-	default_color = "00FF00"
+	default_color = "#00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,NO_UNDERWEAR)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_REPTILE)
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
@@ -11,7 +11,7 @@
 	mutanttail = /obj/item/organ/tail/lizard
 	coldmod = 1.5
 	heatmod = 0.67
-	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "body_size" = "Normal")
+	default_features = list("mcolor" = "#00FF00", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "body_size" = "Normal")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
@@ -23,14 +23,14 @@
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	species_language_holder = /datum/language_holder/lizard
 	digitigrade_customization = DIGITIGRADE_OPTIONAL
-
-	species_chest = /obj/item/bodypart/chest/lizard
-	species_head = /obj/item/bodypart/head/lizard
-	species_l_arm = /obj/item/bodypart/l_arm/lizard
-	species_r_arm = /obj/item/bodypart/r_arm/lizard
-	species_l_leg = /obj/item/bodypart/l_leg/lizard
-	species_r_leg = /obj/item/bodypart/r_leg/lizard
-
+	bodypart_overrides = list(
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/lizard,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/lizard,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/lizard,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/lizard,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/lizard,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/lizard,
+	)
 
 /datum/species/lizard/random_name(gender, unique, lastname, attempts)
 	if(gender == MALE)

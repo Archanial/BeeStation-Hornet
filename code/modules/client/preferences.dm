@@ -72,25 +72,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	var/underwear = "Nude"				//underwear type
-	var/underwear_color = "000"			//underwear color
+	var/underwear_color = "#000000"			//underwear color
 	var/undershirt = "Nude"				//undershirt type
 	var/socks = "Nude"					//socks type
 	var/helmet_style = HELMET_DEFAULT
 	var/backbag = DBACKPACK				//backpack type
 	var/jumpsuit_style = PREF_SUIT		//suit/skirt
 	var/hair_style = "Bald"				//Hair type
-	var/hair_color = "000"				//Hair color
-	var/gradient_color = "000"			//Hair gradient color
+	var/hair_color = "#000000"				//Hair color
+	var/gradient_color = "#000000"			//Hair gradient color
 	var/gradient_style = "None"			//Hair gradient style
 	var/facial_hair_style = "Shaved"	//Face hair type
-	var/facial_hair_color = "000"		//Facial hair color
+	var/facial_hair_color = "#000000"		//Facial hair color
 	var/skin_tone = "caucasian1"		//Skin color
-	var/eye_color = "000"				//Eye color
+	var/eye_color = "#000000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list(
 							"body_size" = "Normal",
-							"mcolor" = "FFF",
-							"ethcolor" = "9c3030",
+							"mcolor" = "#FFFFFF",
+							"ethcolor" = "#9C3030",
 							"tail_lizard" = "Smooth",
 							"tail_human" = "None",
 							"snout" = "Round",
@@ -295,7 +295,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Mutant Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: [features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color;task=input'>Change</a><BR>"
 
 				mutant_colors = TRUE
 
@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Ethereal Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: [features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a><BR>"
 
 			if(istype(pref_species, /datum/species/plasmaman))
 
@@ -324,7 +324,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Eye Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: [eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a><BR>"
 
 				dat += "</td>"
 			else if(use_skintones || mutant_colors)
@@ -338,19 +338,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='?_src_=prefs;preference=hair_style;task=input'>[hair_style]</a><BR>"
 				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input'>&gt;</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color;task=input'>Change</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: [hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color;task=input'>Change</a><BR>"
 
 				dat += "<h3>Gradient Style</h3>"
 
 				dat += "<a href='?_src_=prefs;preference=gradient_style;task=input'>[gradient_style]</a><BR>"
 				dat += "<a href='?_src_=prefs;preference=previous_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_gradient_style;task=input'>&gt;</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[gradient_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=gradient_color;task=input'>Change</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: [gradient_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=gradient_color;task=input'>Change</a><BR>"
 
 				dat += "<h3>Facial Hair Style</h3>"
 
 				dat += "<a href='?_src_=prefs;preference=facial_hair_style;task=input'>[facial_hair_style]</a><BR>"
 				dat += "<a href='?_src_=prefs;preference=previous_facehair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_facehair_style;task=input'>&gt;</a><BR>"
-				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a><BR>"
+				dat += "<span style='border: 1px solid #161616; background-color: [facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a><BR>"
 
 				dat += "</td>"
 
@@ -1327,17 +1327,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("age")
 					age = rand(AGE_MIN, AGE_MAX)
 				if("hair_color")
-					hair_color = random_short_color()
+					hair_color = "#[random_color()]"
 				if("hair_style")
 					hair_style = random_hair_style(gender)
 				if("facial")
-					facial_hair_color = random_short_color()
+					facial_hair_color = "#[random_color()]"
 				if("facial_hair_style")
 					facial_hair_style = random_facial_hair_style(gender)
 				if("underwear")
 					underwear = random_underwear(gender)
 				if("underwear_color")
-					underwear_color = random_short_color()
+					underwear_color = "#[random_color()]"
 				if("undershirt")
 					undershirt = random_undershirt(gender)
 				if("socks")
@@ -1406,7 +1406,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("hair_color")
-					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#" + hair_color) as color|null
+					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", hair_color) as color|null
 					if(new_hair)
 						hair_color = sanitize_hexcolor(new_hair)
 				if("hair_style")
@@ -1425,7 +1425,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						gradient_style = new_gradient_style
 
 				if("gradient_color")
-					var/new_hair_gradient = input(user, "Choose your character's hair gradient colour:", "Character Preference", "#" + gradient_color) as color|null
+					var/new_hair_gradient = input(user, "Choose your character's hair gradient colour:", "Character Preference", gradient_color) as color|null
 					if(new_hair_gradient)
 						gradient_color = sanitize_hexcolor(new_hair_gradient)
 
@@ -1524,7 +1524,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							pref_species = new_species
 							//Now that we changed our species, we must verify that the mutant colour is still allowed.
 							var/temp_hsv = RGBtoHSV(features["mcolor"])
-							if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
+							if(features["mcolor"] == "#000000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
 								features["mcolor"] = pref_species.default_color
 							//Set our forced bodyparts
 							for(var/forced_part in pref_species.forced_features)
@@ -1538,7 +1538,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 				if("mutant_color")
-					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
+					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference",features["mcolor"]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
@@ -2067,9 +2067,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.dna.species.mutant_bodyparts |= "tail_lizard"
 
 	if(icon_updates)
-		character.update_body()
-		character.update_hair()
-		character.update_body_parts(TRUE)
+		character.icon_render_keys = list()
+		character.update_body(is_creating = TRUE)
 
 	character.dna.update_body_size()
 

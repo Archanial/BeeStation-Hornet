@@ -224,7 +224,6 @@
 							var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs for dismember() to use
 							PP.emote("scream")
 							NB.limb_id = "plasmaman"//change the species_id of the limb to that of a plasmaman
-							NB.no_update = TRUE
 							NB.change_bodypart_status()
 							PP.visible_message("<span class='warning'>[L] screams in pain as [L.p_their()] [NB] melts down to the bone!</span>", \
 											  "<span class='userdanger'>You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!</span>")

@@ -2175,8 +2175,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			var/mob/living/carbon/human/N = M
 			N.age += 1
 			if(N.age > 70)
-				N.facial_hair_color = "ccc"
-				N.hair_color = "ccc"
+				N.facial_hair_color = "#CCCCCC"
+				N.hair_color = "#CCCCCC"
 				N.update_hair()
 				if(N.age > 100)
 					N.become_nearsighted(type)

@@ -14,12 +14,14 @@
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN
 
-	species_chest = /obj/item/bodypart/chest/zombie
-	species_head = /obj/item/bodypart/head/zombie
-	species_l_arm = /obj/item/bodypart/l_arm/zombie
-	species_r_arm = /obj/item/bodypart/r_arm/zombie
-	species_l_leg = /obj/item/bodypart/l_leg/zombie
-	species_r_leg = /obj/item/bodypart/r_leg/zombie
+	bodypart_overrides = list(
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/zombie,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zombie,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/zombie,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/zombie,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/zombie,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/zombie
+	)
 
 /datum/species/zombie/check_roundstart_eligible()
 	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
@@ -102,12 +104,14 @@
 
 	examine_limb_id = SPECIES_HUMAN
 
-	species_chest = /obj/item/bodypart/chest/zombie
-	species_head = /obj/item/bodypart/head/zombie
-	species_l_arm = /obj/item/bodypart/l_arm/zombie
-	species_r_arm = /obj/item/bodypart/r_arm/zombie
-	species_l_leg = /obj/item/bodypart/l_leg/zombie
-	species_r_leg = /obj/item/bodypart/r_leg/zombie
+	bodypart_overrides = list(
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/zombie,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zombie,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/zombie,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/zombie,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/zombie,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/zombie
+	)
 
 /datum/species/human/krokodil_addict/replace_body(mob/living/carbon/C, datum/species/new_species)
 	..()
@@ -125,6 +129,5 @@
 			BP.should_draw_greyscale = TRUE
 			BP.name = "human [parse_zone(BP.body_zone)]"
 			BP.update_limb()
-
 
 #undef REGENERATION_DELAY

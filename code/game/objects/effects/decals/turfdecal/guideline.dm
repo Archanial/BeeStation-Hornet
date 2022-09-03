@@ -12,7 +12,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_in/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_in/blue
@@ -58,7 +58,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_in/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_mid
@@ -69,7 +69,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_mid/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_mid/blue
@@ -115,7 +115,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_mid/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_out
@@ -126,7 +126,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_out/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_out/blue
@@ -172,7 +172,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_out/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_in_alt
@@ -183,7 +183,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_in_alt/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_in_alt/blue
@@ -229,7 +229,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_in_alt/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_mid_alt
@@ -240,7 +240,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_mid_alt/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_mid_alt/blue
@@ -286,7 +286,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_mid_alt/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_out_alt
@@ -297,7 +297,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_out_alt/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_out_alt/blue
@@ -343,7 +343,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_out_alt/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_in_T
@@ -354,7 +354,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_in_T/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_in_T/blue
@@ -400,7 +400,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_in_T/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_mid_T
@@ -411,7 +411,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_mid_T/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_mid_T/blue
@@ -457,7 +457,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_out_T/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_out_T
@@ -468,7 +468,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_out_T/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_out_T/blue
@@ -514,7 +514,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_out_T/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_in_arrow
@@ -525,7 +525,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_in_arrow/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_in_arrow/blue
@@ -571,7 +571,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_in_arrow/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_mid_arrow
@@ -582,7 +582,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_mid_arrow/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_mid_arrow/blue
@@ -628,7 +628,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_mid_arrow/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_out_arrow
@@ -639,7 +639,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_out_arrow/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_out_arrow/blue
@@ -685,7 +685,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_out_arrow/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_in_arrow_con
@@ -696,7 +696,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_in_arrow_con/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_in_arrow_con/blue
@@ -742,7 +742,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_in_arrow_con/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_mid_arrow_con
@@ -753,7 +753,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_mid_arrow_con/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_mid_arrow_con/blue
@@ -799,7 +799,7 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_mid_arrow_con/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 //guideline_out_arrow
@@ -810,7 +810,7 @@
 
 /obj/effect/turf_decal/guideline/guideline_out_arrow_con/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/guideline/guideline_out_arrow_con/blue
@@ -856,5 +856,5 @@
 	color = "#E300FF" //bright pink as default for mapping
 
 /obj/effect/turf_decal/guideline/guideline_out_arrow_con/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()

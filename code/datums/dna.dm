@@ -324,6 +324,7 @@
 			language_holder = new species_holder(src)
 		update_atom_languages()
 		if(icon_update)
+			update_body(is_creating = TRUE)
 			update_mutations_overlay()// no lizard with human hulk overlay please.
 
 /mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
@@ -369,9 +370,7 @@
 		updateappearance(icon_update=0)
 
 	if(mrace || newfeatures || ui)
-		update_body()
-		update_hair()
-		update_body_parts()
+		update_body(is_creating = TRUE)
 		update_mutations_overlay()
 
 	if(LAZYLEN(mutations))
@@ -402,9 +401,9 @@
 	hair_style = GLOB.hair_styles_list[deconstruct_block(getblock(structure, DNA_HAIR_STYLE_BLOCK), GLOB.hair_styles_list.len)]
 	if(icon_update)
 		update_body()
-		update_hair()
+		update_hair(is_creating = TRUE)
 		if(mutcolor_update)
-			update_body_parts()
+			update_body_parts(update_limb_data = TRUE)
 		if(mutations_overlay_update)
 			update_mutations_overlay()
 

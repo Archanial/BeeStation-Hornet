@@ -2,7 +2,7 @@
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
 	name = "\improper Jellyperson"
 	id = SPECIES_JELLYPERSON
-	default_color = "00FF90"
+	default_color = "#00FF90"
 	species_traits = list(MUTCOLORS,EYECOLOR,NOBLOOD)
 	inherent_traits = list(TRAIT_TOXINLOVER, TRAIT_NONECRODISEASE)
 	mutantlungs = /obj/item/organ/lungs/slime
@@ -19,13 +19,14 @@
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve
 
-
-	species_chest = /obj/item/bodypart/chest/jelly
-	species_head = /obj/item/bodypart/head/jelly
-	species_l_arm = /obj/item/bodypart/l_arm/jelly
-	species_r_arm = /obj/item/bodypart/r_arm/jelly
-	species_l_leg = /obj/item/bodypart/l_leg/jelly
-	species_r_leg = /obj/item/bodypart/r_leg/jelly
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/jelly,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/jelly,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/jelly,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/jelly,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/jelly,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/jelly,
+	)
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
@@ -116,23 +117,23 @@
 //Slime people are able to split like slimes, retaining a single mind that can swap between bodies at will, even after death.
 
 /datum/species/jelly/slime
-	name = "Slimeperson"
+	name = "\improper Slimeperson"
 	id = SPECIES_SLIMEPERSON
-	default_color = "00FFFF"
+	default_color = "#00FFFF"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
 	hair_color = "mutcolor"
 	hair_alpha = 150
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/slime,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/slime,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/slime,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/slime,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/slime,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/slime,
+	)
 	var/datum/action/innate/split_body/slime_split
 	var/list/mob/living/carbon/bodies
 	var/datum/action/innate/swap_body/swap_body
-
-	species_chest = /obj/item/bodypart/chest/slime
-	species_head = /obj/item/bodypart/head/slime
-	species_l_arm = /obj/item/bodypart/l_arm/slime
-	species_r_arm = /obj/item/bodypart/r_arm/slime
-	species_l_leg = /obj/item/bodypart/l_leg/slime
-	species_r_leg = /obj/item/bodypart/r_leg/slime
-
 
 /datum/species/jelly/slime/on_species_loss(mob/living/carbon/C)
 	if(slime_split)
@@ -238,7 +239,7 @@
 
 	spare.underwear = "Nude"
 	H.dna.transfer_identity(spare, transfer_SE=1)
-	spare.dna.features["mcolor"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
+	spare.dna.features["mcolor"] = "#[pick("7F", "FF")][pick("7F", "FF")][pick("7F", "FF")]"
 	spare.real_name = spare.dna.real_name
 	spare.name = spare.dna.real_name
 	spare.updateappearance(mutcolor_update=1)
@@ -312,7 +313,7 @@
 
 		var/list/L = list()
 		// HTML colors need a # prefix
-		L["htmlcolor"] = "#[body.dna.features["mcolor"]]"
+		L["htmlcolor"] = body.dna.features["mcolor"]
 		L["area"] = get_area_name(body, TRUE)
 		var/stat = "error"
 		switch(body.stat)
@@ -594,7 +595,7 @@
 //Stargazers are the telepathic branch of jellypeople, able to project psychic messages and to link minds with willing participants.
 
 /datum/species/jelly/stargazer
-	name = "Stargazer"
+	name = "\improper Stargazer"
 	id = SPECIES_STARGAZER
 	var/datum/action/innate/project_thought/project_thought
 	var/datum/action/innate/link_minds/link_minds

@@ -150,13 +150,13 @@
 	alpha = 80
 
 /atom/movable/screen/fullscreen/color_vision/green
-	color = "#00ff00"
+	color = "#00FF00"
 
 /atom/movable/screen/fullscreen/color_vision/red
-	color = "#ff0000"
+	color = "#FF0000"
 
 /atom/movable/screen/fullscreen/color_vision/blue
-	color = "#0000ff"
+	color = "#0000FF"
 
 /atom/movable/screen/fullscreen/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
@@ -170,7 +170,7 @@
 /atom/movable/screen/fullscreen/lighting_backdrop/lit
 	invisibility = INVISIBILITY_LIGHTING
 	layer = BACKGROUND_LAYER+21
-	color = "#000"
+	color = "#000000"
 	show_when_dead = TRUE
 
 //Provides whiteness in case you don't see lights so everything is still visible

@@ -2,7 +2,7 @@
 	name = "\improper Mothman"
 	id = SPECIES_MOTH
 	bodyflag = FLAG_MOTH
-	default_color = "00FF00"
+	default_color = "#00FF00"
 	species_traits = list(LIPS, NOEYESPRITES)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_BUG)
 	mutant_bodyparts = list("moth_wings")
@@ -18,12 +18,14 @@
 	species_language_holder = /datum/language_holder/moth
 	inert_mutation = STRONGWINGS
 
-	species_chest = /obj/item/bodypart/chest/moth
-	species_head = /obj/item/bodypart/head/moth
-	species_l_arm = /obj/item/bodypart/l_arm/moth
-	species_r_arm = /obj/item/bodypart/r_arm/moth
-	species_l_leg = /obj/item/bodypart/l_leg/moth
-	species_r_leg = /obj/item/bodypart/r_leg/moth
+	bodypart_overrides = list(
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/moth,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/moth,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/moth,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/moth,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/moth,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/moth,
+	)
 
 /datum/species/moth/random_name(gender, unique, lastname, attempts)
 	. = "[pick(GLOB.moth_first)]"

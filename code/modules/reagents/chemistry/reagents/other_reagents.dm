@@ -470,14 +470,14 @@
 		var/mob/living/carbon/human/N = M
 		N.hair_style = "Spiky"
 		N.facial_hair_style = "Shaved"
-		N.facial_hair_color = "000"
-		N.hair_color = "000"
+		N.facial_hair_color = "#000000"
+		N.hair_color = "#000000"
 		if(!(HAIR in N.dna.species.species_traits)) //No hair? No problem!
 			N.dna.species.species_traits += HAIR
 		if(N.dna.species.use_skintones)
 			N.skin_tone = "orange"
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
-			N.dna.features["mcolor"] = "f80"
+			N.dna.features["mcolor"] = "#FF8800"
 		N.regenerate_icons()
 	..()
 
@@ -1700,7 +1700,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
-	var/list/potential_colors = list("#0ad","#a0f","#f73","#d14","#d14","#0b5","#0ad","#f73","#fc2","#084","#05e","#d22","#fa0") // fucking hair code
+	var/list/potential_colors = list("#00AADD","#AA00FF","#FF773","#DD1144","#00BB55","#00AADD","#FF7733","#FFCC22","#008844","#0055EE","#DD2222","#FFAA00")
 	taste_description = "sourness"
 
 /datum/reagent/hair_dye/reaction_mob(mob/living/M, method=TOUCH, reac_volume)

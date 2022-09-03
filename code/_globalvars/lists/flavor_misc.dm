@@ -46,25 +46,25 @@ GLOBAL_LIST_EMPTY(ipc_chassis_list)
 GLOBAL_LIST_EMPTY(insect_type_list)
 
 GLOBAL_LIST_INIT(color_list_ethereal, list(
-	"Red" = "ff3131",
-	"Maroon" = "9c3030",
-	"Orange" = "f69c28",
-	"Sandy Yellow" = "ffefa5",
-	"Yellow" = "fbdf56",
-	"Green" = "97ee63",
-	"Dark Green" = "0ab432",
-	"Spring Green" = "00fa9a",
-	"Sea Green" = "37835b",
-	"Cyan" = "00ffff",
-	"Dark Teal" = "5ea699",
-	"Powder Blue" = "95e5ff",
-	"Denim Blue" = "3399ff",
-	"Royal Blue" = "5860f5",
-	"Lavender" = "d1acff",
-	"Purple" = "a42df7",
-	"Orchid Purple" = "ee82ee",
-	"Rose" = "ff92b6",
-	"Gray" = "979497"))
+	"Red" = "#FF3131",
+	"Maroon" = "#9C3030",
+	"Orange" = "#F69C28",
+	"Sandy Yellow" = "#FFEFA5",
+	"Yellow" = "#FBDF56",
+	"Green" = "#97EE63",
+	"Dark Green" = "#0AB432",
+	"Spring Green" = "#00FA9A",
+	"Sea Green" = "#37835B",
+	"Cyan" = "#00FFFF",
+	"Dark Teal" = "#5EA699",
+	"Powder Blue" = "#95E5FF",
+	"Denim Blue" = "#3399FF",
+	"Royal Blue" = "#5860F5",
+	"Lavender" = "#D1ACFF",
+	"Purple" = "#A42Df7",
+	"Orchid Purple" = "#EE82EE",
+	"Rose" = "#FF92B6",
+	"Gray" = "#979497"))
 
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites
 GLOBAL_LIST_INIT(ghost_forms_with_accessories_list, list("ghost")) //stores the ghost forms that support hair and other such things

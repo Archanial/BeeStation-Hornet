@@ -4,7 +4,7 @@
 	gender = PLURAL
 	body_parts_covered = GROIN
 	fitted = NO_FEMALE_UNIFORM
-	supports_variations = DIGITIGRADE_VARIATION
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 
 /obj/item/clothing/under/shorts/red

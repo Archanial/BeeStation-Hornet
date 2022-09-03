@@ -6,7 +6,7 @@
 	examine_limb_id = SPECIES_HUMAN
 
 	mutant_bodyparts = list("ears", "tail_human")
-	default_features = list("mcolor" = "FFF", "wings" = "None", "body_size" = "Normal")
+	default_features = list("mcolor" = "#FFFFFF", "wings" = "None", "body_size" = "Normal")
 	forced_features = list("tail_human" = "Cat", "ears" = "Cat")
 
 	mutantears = /obj/item/organ/ears/cat

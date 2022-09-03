@@ -88,15 +88,29 @@
 #define ALT_STYLE			1
 #define DIGITIGRADE_STYLE 	2
 
-//flags for outfits that have mutantrace variants (try not to use this): Currently only needed if you're trying to add tight fitting bootyshorts
-//This system takes priority over Sprite Sheets.
-#define NO_VARIATION			(1<<0)
-#define DIGITIGRADE_VARIATION	(1<<1)
-#define DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
+//Flags (actual flags, fucker ^) for /obj/item/var/supports_variations_flags
+///No alternative sprites based on bodytype
+#define CLOTHING_NO_VARIATION (1<<0)
+///Has a sprite for digitigrade legs specifically.
+#define CLOTHING_DIGITIGRADE_VARIATION (1<<1)
+///The sprite works fine for digitigrade legs as-is.
+#define CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
 
-#define NOT_DIGITIGRADE				0
-#define FULL_DIGITIGRADE			1
-#define SQUISHED_DIGITIGRADE		2
+//HUMAN PATHS
+///The dmi for humanoid uniforms
+#define DEFAULT_UNIFORM_FILE 'icons/mob/under/default.dmi'
+///The dmi for humanoid shoes
+#define DEFAULT_SHOES_FILE 'icons/mob/clothing/feet.dmi'
+///The dmi for humanoid oversuits
+#define DEFAULT_SUIT_FILE 'icons/mob/clothing/suit.dmi'
+
+//DIGITIGRADE PATHS
+///The dmi containing digitigrade uniforms
+#define DIGITIGRADE_UNIFORM_FILE 'icons/mob/species/misc/digitigrade.dmi'
+///The dmi containing digitigrade shoes
+#define DIGITIGRADE_SHOES_FILE 'icons/mob/species/misc/digitigrade_shoes.dmi'
+///The dmi containing digitigrade oversuits
+#define DIGITIGRADE_SUIT_FILE 'icons/mob/species/misc/digitigrade_suits.dmi'
 
 //! ## flags for covering body parts
 #define GLASSESCOVERSEYES	(1<<0)

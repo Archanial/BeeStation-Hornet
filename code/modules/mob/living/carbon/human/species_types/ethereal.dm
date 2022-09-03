@@ -22,12 +22,14 @@
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
 
-	species_chest = /obj/item/bodypart/chest/ethereal
-	species_head = /obj/item/bodypart/head/ethereal
-	species_l_arm = /obj/item/bodypart/l_arm/ethereal
-	species_r_arm = /obj/item/bodypart/r_arm/ethereal
-	species_l_leg = /obj/item/bodypart/l_leg/ethereal
-	species_r_leg = /obj/item/bodypart/r_leg/ethereal
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/ethereal,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/ethereal,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/ethereal,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/ethereal,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/ethereal,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/ethereal,
+	)
 
 	var/current_color
 	var/EMPeffect = FALSE
@@ -57,7 +59,7 @@
 	if(!ishuman(C))
 		return
 	var/mob/living/carbon/human/ethereal = C
-	default_color = "#[ethereal.dna.features["ethcolor"]]"
+	default_color = ethereal.dna.features["ethcolor"]
 	r1 = GETREDPART(default_color)
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
@@ -68,10 +70,10 @@
 
 
 	//The following code is literally only to make admin-spawned ethereals not be black.
-	C.dna.features["mcolor"] = C.dna.features["ethcolor"] //Ethcolor and Mut color are both dogshit and will be replaced
-	for(var/obj/item/bodypart/BP as() in C.bodyparts)
-		if(BP.limb_id == SPECIES_ETHEREAL)
-			BP.update_limb(is_creating = TRUE)
+	C.dna.features["mcolor"] = C.dna.features["ethcolor"]
+	for(var/obj/item/bodypart/limb as() in C.bodyparts)
+		if(limb.limb_id == SPECIES_ETHEREAL)
+			limb.update_limb(is_creating = TRUE)
 
 /datum/species/ethereal/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	UnregisterSignal(C, COMSIG_ATOM_EMAG_ACT)
@@ -101,8 +103,8 @@
 		fixed_mut_color = copytext_char(current_color, 2)
 	else
 		ethereal_light.set_light_on(FALSE)
-		fixed_mut_color = rgb(128,128,128)
-	H.update_body()
+		fixed_mut_color = "#808080"
+	H.update_body(is_creating = TRUE)
 
 /datum/species/ethereal/proc/on_emp_act(mob/living/carbon/human/H, severity)
 	SIGNAL_HANDLER
@@ -136,7 +138,7 @@
 /datum/species/ethereal/proc/handle_emag(mob/living/carbon/human/H)
 	if(!emageffect)
 		return
-	current_color = "#[GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]]"	//Picks a random colour from the Ethereal colour list
+	current_color = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]	//Picks a random colour from the Ethereal colour list
 	spec_updatehealth(H)
 	addtimer(CALLBACK(src, .proc/handle_emag, H), 5) //Call ourselves every 0.5 seconds to change color
 

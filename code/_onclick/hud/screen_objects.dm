@@ -179,7 +179,7 @@
 	if(!user.can_equip(holding, slot_id, TRUE, bypass_equip_delay_self = TRUE))
 		item_overlay.color = "#FF0000"
 	else
-		item_overlay.color = "#00ff00"
+		item_overlay.color = "#00FF00"
 
 	object_overlays += item_overlay
 	add_overlay(object_overlays)

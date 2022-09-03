@@ -6,9 +6,11 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/
 	changesource_flags = MIRROR_BADMIN
 
-	species_chest = /obj/item/bodypart/chest/monkey
-	species_head = /obj/item/bodypart/head/monkey
-	species_l_arm = /obj/item/bodypart/l_arm/monkey
-	species_r_arm = /obj/item/bodypart/r_arm/monkey
-	species_l_leg = /obj/item/bodypart/l_leg/monkey
-	species_r_leg = /obj/item/bodypart/r_leg/monkey
+	bodypart_overrides = list(
+		BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/monkey,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/monkey,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/monkey,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/l_leg/monkey,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/r_leg/monkey,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/monkey,
+	)

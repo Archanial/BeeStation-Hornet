@@ -6,13 +6,13 @@
 	else
 		gender = pick(MALE,FEMALE)
 	underwear = random_underwear(gender)
-	underwear_color = random_short_color()
+	underwear_color = "#[random_color()]"
 	undershirt = random_undershirt(gender)
 	socks = random_socks()
 	skin_tone = random_skin_tone()
 	hair_style = random_hair_style(gender)
 	facial_hair_style = random_facial_hair_style(gender)
-	hair_color = random_short_color()
+	hair_color = "#[random_color()]"
 	facial_hair_color = hair_color
 	eye_color = random_eye_color()
 	if(!pref_species)

@@ -348,11 +348,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(newtype)
 			pref_species = new newtype
 
-	if(!S["features["mcolor"]"] || S["features["mcolor"]"] == "#000")
-		WRITE_FILE(S["features["mcolor"]"]	, "#FFF")
+	if(!S["features["mcolor"]"] || S["features["mcolor"]"] == "#000000")
+		WRITE_FILE(S["features["mcolor"]"]	, "#FFFFFF")
 
-	if(!S["feature_ethcolor"] || S["feature_ethcolor"] == "#000")
-		WRITE_FILE(S["feature_ethcolor"]	, "9c3030")
+	if(!S["feature_ethcolor"] || S["feature_ethcolor"] == "#000000")
+		WRITE_FILE(S["feature_ethcolor"]	, "#9C3030")
 
 	//Character
 	READ_FILE(S["real_name"], real_name)
@@ -430,10 +430,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!custom_names[custom_name_id])
 			custom_names[custom_name_id] = get_default_name(custom_name_id)
 
-	if(!features["mcolor"] || features["mcolor"] == "#000")
-		features["mcolor"] = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F")
+	if(!features["mcolor"] || features["mcolor"] == "#000000")
+		features["mcolor"] = pick("#FFFFFF","#7F7F7F", "#7FFF7F", "#7F7FFF", "#FF7F7F", "#7FFFFF", "#FF7FFF", "#FFFF7F")
 
-	if(!features["ethcolor"] || features["ethcolor"] == "#000")
+	if(!features["ethcolor"] || features["ethcolor"] == "#000000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
 	// Keep it updated
@@ -455,18 +455,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		undershirt = sanitize_inlist(undershirt, GLOB.undershirt_f)
 	socks = sanitize_inlist(socks, GLOB.socks_list)
 	age = sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
-	hair_color = sanitize_hexcolor(hair_color, 3, 0)
-	facial_hair_color = sanitize_hexcolor(facial_hair_color, 3, 0)
+	hair_color = sanitize_hexcolor(hair_color, 6, 0)
+	facial_hair_color = sanitize_hexcolor(facial_hair_color, 6, 0)
 	gradient_style = sanitize_inlist(gradient_style, GLOB.hair_gradients_list, "None")
-	gradient_color = sanitize_hexcolor(gradient_color, 3, 0)
-	underwear_color	= sanitize_hexcolor(underwear_color, 3, 0)
-	eye_color = sanitize_hexcolor(eye_color, 3, 0)
+	gradient_color = sanitize_hexcolor(gradient_color, 6, 0)
+	underwear_color	= sanitize_hexcolor(underwear_color, 6, 0)
+	eye_color = sanitize_hexcolor(eye_color, 6, 0)
 	skin_tone = sanitize_inlist(skin_tone, GLOB.skin_tones)
 	backbag	= sanitize_inlist(backbag, GLOB.backbaglist, initial(backbag))
 	jumpsuit_style = sanitize_inlist(jumpsuit_style, GLOB.jumpsuitlist, initial(jumpsuit_style))
 	uplink_spawn_loc = sanitize_inlist(uplink_spawn_loc, GLOB.uplink_spawn_loc_list_save, initial(uplink_spawn_loc))
 	features["body_size"] = sanitize_inlist(features["body_size"], GLOB.body_sizes, "Normal")
-	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 3, 0)
+	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 6, 0)
 	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")

@@ -212,7 +212,7 @@
 	return ..()
 
 
-/mob/living/carbon/true_devil/update_body() //we don't use the bodyparts layer for devils.
+/mob/living/carbon/true_devil/update_body(is_creating = FALSE) //we don't use the bodyparts layer for devils.
 	return
 
 /mob/living/carbon/true_devil/update_body_parts()

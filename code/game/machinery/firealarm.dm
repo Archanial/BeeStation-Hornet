@@ -74,49 +74,35 @@
 	..()
 	update_icon()
 
-/obj/machinery/firealarm/update_icon()
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
-	if(panel_open)
-		icon_state = "fire_b[buildstage]"
-		return
-
-	if(stat & BROKEN)
-		icon_state = "firex"
-		return
-
-	icon_state = "fire0"
-
+/obj/machinery/firealarm/update_overlays()
+	. = ..()
 	if(stat & NOPOWER)
 		return
 
-	add_overlay("fire_overlay")
-
+	. += "fire_overlay"
 	if(is_station_level(z))
-		add_overlay("fire_[GLOB.security_level]")
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[GLOB.security_level]", layer, EMISSIVE_PLANE, dir)
+		. += "fire_[GLOB.security_level]"
+		. += mutable_appearance(icon, "fire_[GLOB.security_level]")
+		. += emissive_appearance(icon, "fire_[GLOB.security_level]", alpha = src.alpha)
 	else
-		add_overlay("fire_[SEC_LEVEL_GREEN]")
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_[SEC_LEVEL_GREEN]", layer, EMISSIVE_PLANE, dir)
+		. += "fire_[SEC_LEVEL_GREEN]"
+		. += mutable_appearance(icon, "fire_[SEC_LEVEL_GREEN]")
+		. += emissive_appearance(icon, "fire_[SEC_LEVEL_GREEN]", alpha = src.alpha)
 
-	var/area/A = src.loc
-	A = A.loc
+	var/area/A = get_area(src)
 
 	if(!detecting || !A.fire)
-		add_overlay("fire_off")
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_off", layer, EMISSIVE_PLANE, dir)
+		. += "fire_off"
+		. += mutable_appearance(icon, "fire_off")
+		. += emissive_appearance(icon, "fire_off", alpha = src.alpha)
 	else if(obj_flags & EMAGGED)
-		add_overlay("fire_emagged")
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_emagged", layer, EMISSIVE_PLANE, dir)
+		. += "fire_emagged"
+		. += mutable_appearance(icon, "fire_emagged")
+		. += emissive_appearance(icon, "fire_emagged", alpha = src.alpha)
 	else
-		add_overlay("fire_on")
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "fire_on", layer, EMISSIVE_PLANE, dir)
+		. += "fire_on"
+		. += mutable_appearance(icon, "fire_on")
+		. += emissive_appearance(icon, "fire_on", alpha = src.alpha)
 
 /obj/machinery/firealarm/emp_act(severity)
 	. = ..()

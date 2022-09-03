@@ -264,11 +264,11 @@ GENE SCANNER
 							<td><font color='red'>[round(brute_loss,1)]</font></td>\
 							<td><font color='orange'>[round(fire_loss,1)]</font></td>\
 							<td><font color='green'>[round(tox_loss,1)]</font></td>\
-							<td><font color='purple'>[round(oxy_loss,1)]</font></td></tr>"
+						<td><font color='purple'>[round(oxy_loss,1)]</font></td></tr>"
 
 			for(var/o in damaged)
 				var/obj/item/bodypart/org = o //head, left arm, right arm, etc.
-				dmgreport += "<tr><td><font color='#0000CC'>[capitalize(parse_zone(org.body_zone))]:</font></td>\
+				dmgreport += "<tr><td><font color='#0000CC'>[capitalize(org.plaintext_zone)]:</font></td>\
 								<td><font color='red'>[(org.brute_dam > 0) ? "[round(org.brute_dam,1)]" : "0"]</font></td>\
 								<td><font color='orange'>[(org.burn_dam > 0) ? "[round(org.burn_dam,1)]" : "0"]</font></td></tr>"
 			dmgreport += "</font></table>"

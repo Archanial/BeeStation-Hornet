@@ -130,6 +130,17 @@
 	icon_state = "limbgrower_idleoff"
 	updateUsrDialog()
 
+/obj/machinery/limbgrower/proc/build_limb(buildpath)
+	//i need to create a body part manually using a set icon (otherwise it doesnt appear)
+	var/obj/item/bodypart/limb
+	limb = new buildpath(loc)
+	limb.icon_state = "[selected_category]_[limb.body_zone]"
+	limb.name = "\improper synthetic [selected_category] [limb.plaintext_zone]"
+	limb.limb_id = selected_category
+	limb.species_color = "#62A262" //Gets turned into a full color in limb code
+	limb.update_icon_dropped()
+
+///Returns a valid limb typepath based on the selected option
 /obj/machinery/limbgrower/proc/create_buildpath()
 	var/part_type = being_built.id //their ids match bodypart typepaths
 	var/species = selected_category
@@ -139,16 +150,6 @@
 	else
 		path = "/obj/item/bodypart/[part_type]/[species]"
 	return text2path(path)
-
-/obj/machinery/limbgrower/proc/build_limb(buildpath)
-	//i need to create a body part manually using a set icon (otherwise it doesnt appear)
-	var/obj/item/bodypart/limb
-	limb = new buildpath(loc)
-	limb.icon_state = "[selected_category]_[limb.body_zone]"
-	limb.name = "\improper synthetic [selected_category] [parse_zone(limb.body_zone)]"
-	limb.limb_id = selected_category
-	limb.mutation_color = "62A262" //Gets turned into a full color in limb code
-	limb.update_icon_dropped()
 
 /obj/machinery/limbgrower/RefreshParts()
 	reagents.maximum_volume = 0

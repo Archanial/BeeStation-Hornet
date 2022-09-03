@@ -16,7 +16,6 @@
 
 	setup_human_dna()
 
-
 	prepare_huds() //Prevents a nasty runtime on human init
 
 	if(dna.species)
@@ -537,8 +536,7 @@
 		facial_hair_style = "Shaved"
 	hair_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 	underwear = "Nude"
-	update_body()
-	update_hair()
+	update_body(is_creating = TRUE)
 
 /mob/living/carbon/human/singularity_pull(S, current_size)
 	..()

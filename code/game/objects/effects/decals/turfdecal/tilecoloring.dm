@@ -6,7 +6,7 @@
 
 /obj/effect/turf_decal/tile/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/tile/blue
@@ -172,7 +172,7 @@
 	icon_state = "tile_full"
 
 /obj/effect/turf_decal/tile/random/Initialize(mapload)
-	color = "#[random_short_color()]"
+	color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/trimline
@@ -182,7 +182,7 @@
 
 /obj/effect/turf_decal/trimline/Initialize(mapload)
 	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-		color = "#[random_short_color()]"
+		color = "#[random_color()]"
 	. = ..()
 
 /obj/effect/turf_decal/trimline/white

@@ -160,25 +160,11 @@
 		which_hand = BODY_ZONE_PRECISE_R_HAND
 	return get_bodypart(check_zone(which_hand))
 
-//Helper for quickly creating a new limb - used by augment code in species.dm spec_attacked_by
-//
-// FUCK YOU AUGMENT CODE - With love, Kapu
-/mob/living/carbon/proc/newBodyPart(zone, robotic, fixed_icon)
-	var/obj/item/bodypart/L
-	switch(zone)
-		if(BODY_ZONE_L_ARM)
-			L = new dna.species.species_l_arm()
-		if(BODY_ZONE_R_ARM)
-			L = new dna.species.species_r_arm()
-		if(BODY_ZONE_HEAD)
-			L = new dna.species.species_head()
-		if(BODY_ZONE_L_LEG)
-			L = new dna.species.species_l_leg()
-		if(BODY_ZONE_R_LEG)
-			L = new dna.species.species_r_leg()
-		if(BODY_ZONE_CHEST)
-			L = new dna.species.species_chest()
-	. = L
+///Helper for quickly creating a new limb - used by augment code in species.dm spec_attacked_by
+/mob/living/carbon/proc/newBodyPart(zone)
+	var/path = dna.species.bodypart_overrides[zone]
+	var/obj/item/bodypart/new_bodypart = new path()
+	return new_bodypart
 
 /mob/living/carbon/monkey/newBodyPart(zone, robotic, fixed_icon)
 	var/obj/item/bodypart/L
@@ -208,10 +194,6 @@
 			L = new /obj/item/bodypart/head/larva()
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest/larva()
-	if(L)
-		L.update_limb(fixed_icon, src)
-		if(robotic)
-			L.change_bodypart_status(BODYTYPE_ROBOTIC)
 	. = L
 
 /mob/living/carbon/alien/humanoid/newBodyPart(zone, robotic, fixed_icon)
@@ -240,30 +222,30 @@
 	. = 0
 	switch(skin_tone)
 		if("caucasian1")
-			. = "ffe0d1"
+			. = "#FFE0D1"
 		if("caucasian2")
-			. = "fcccb3"
+			. = "#FCCCB3"
 		if("caucasian3")
-			. = "e8b59b"
+			. = "#E8B59B"
 		if("latino")
-			. = "d9ae96"
+			. = "#D9AE96"
 		if("mediterranean")
-			. = "c79b8b"
+			. = "#C79B8B"
 		if("asian1")
-			. = "ffdeb3"
+			. = "#FFDEB3"
 		if("asian2")
-			. = "e3ba84"
+			. = "#E3BA84"
 		if("arab")
-			. = "c4915e"
+			. = "#C4915E"
 		if("indian")
-			. = "b87840"
+			. = "#B87840"
 		if("african1")
-			. = "754523"
+			. = "#754523"
 		if("african2")
-			. = "471c18"
+			. = "#471C18"
 		if("albino")
-			. = "fff4e6"
+			. = "#FFF4E6"
 		if("orange")
-			. = "ffc905"
+			. = "#FFC905"
 		if("pink")
-			. = "D7377D"
+			. = "#D7377D"

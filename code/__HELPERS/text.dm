@@ -340,10 +340,6 @@ GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l",
 	for(var/i=1, i<=times, i++)
 		. += string
 
-/// Returns a random hex color 3 digits long
-/proc/random_short_color()
-	return random_string(3, GLOB.hex_characters)
-
 /// Returns a random hex color 6 digits long
 /proc/random_color()
 	return random_string(6, GLOB.hex_characters)
